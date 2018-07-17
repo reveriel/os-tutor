@@ -1,7 +1,18 @@
 
-loop:
-    jmp loop
+; boot sector is 512 bytes, last two bytes must be 0xaa55
 
+mov ah, 0x0e; tty mode
+mov al, 'H'
+int 0x10
+mov al, 'e'
+int 0x10
+mov al, 'l'
+int 0x10
+int 0x10
+mov al, 'o'
+int 0x10
+
+jmp $;
 
 ; times  repeat something
 
