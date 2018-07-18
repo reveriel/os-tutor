@@ -4,47 +4,25 @@
 [org 0x7c00]
 ; boot sector is 512 bytes, last two bytes must be 0xaa55
 
+
+mov bx, 43
+
+    cmp bx, 4
+    jg else1
+    mov al, 'A'
+    jmp end
+else1:
+    cmp bx, 40
+    jge else2
+    mov al, 'B'
+    jmp end
+else2:
+    mov al, 'C'
+end:
+
 mov ah, 0x0e
-
-mov bp, 0x8000
-mov sp, bp
-
-; 8000 .   sp bp
-; 7fff .
-; 7ffe A
-; 7ffd .
-; 7ffc B
-; 7ffb .
-; 7ffa C
-; 7ffe .
-
-push 'A'
-push 'B'
-push 'C'
-
-; pop bx
-; mov al, bl
-; int 0x10
-
-; pop bx
-; mov al, bl
-; int 0x10
-
-
-; mov al, [0x8000]
-; int 0x10
-mov al, [0x7fff]
 int 0x10
-mov al, [0x7ffe]
-int 0x10
-mov al, [0x7ffd]
-int 0x10
-mov al, [0x7ffc]
-int 0x10
-mov al, [0x7ffb]
-int 0x10
-mov al, [0x7ffa]
-int 0x10
+
 
 jmp $
 
