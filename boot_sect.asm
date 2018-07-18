@@ -5,15 +5,12 @@
 ; boot sector is 512 bytes, last two bytes must be 0xaa55
 
 
-    mov bx, HELLO_MSG
-    call print_string
-
-    mov bx, GOODBYE_MSG
-    call print_string
+    mov dx, 0x1fb6
+    call print_hex
 
     jmp $
 
-%include "print_string.asm"
+%include "print_hex.asm"
 
 ; DATA
 HELLO_MSG:
