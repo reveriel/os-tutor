@@ -1,42 +1,59 @@
 
+; use org, tell assambler the starting address
+; so the assambler can help us add it to all lables
 [org 0x7c00]
 ; boot sector is 512 bytes, last two bytes must be 0xaa55
 
-mov ah, 0x0e; tty mode
-; mov al, 'H'
-; int 0x10
-; mov al, 'e'
-; int 0x10
-; mov al, 'l'
-; int 0x10
-; mov al, 'l'
-; int 0x10
-; mov al, 'o'
-; int 0x10
-; ; LF CR
-; mov al, 0x0d
-; int 0x10
-; mov al, 0x0a
+mov ah, 0x0e
+
+mov bp, 0x8000
+mov sp, bp
+
+; 8000 .   sp bp
+; 7fff .
+; 7ffe A
+; 7ffd .
+; 7ffc B
+; 7ffb .
+; 7ffa C
+; 7ffe .
+
+push 'A'
+push 'B'
+push 'C'
+
+; pop bx
+; mov al, bl
 ; int 0x10
 
-mov al, the_secret
+; pop bx
+; mov al, bl
+; int 0x10
+
+
+; mov al, [0x8000]
+; int 0x10
+mov al, [0x7fff]
+int 0x10
+mov al, [0x7ffe]
+int 0x10
+mov al, [0x7ffd]
+int 0x10
+mov al, [0x7ffc]
+int 0x10
+mov al, [0x7ffb]
+int 0x10
+mov al, [0x7ffa]
 int 0x10
 
-mov al, [the_secret]
-int 0x10
+jmp $
 
-mov bx, the_secret
-add bx, 0x7c00
-mov al, [bx]
-int 0x10
 
-mov al, [0x7c1d]
-int 0x10
 
-jmp $;
 
-the_secret:
-    db "X"
+; string , null terminating
+my_string:
+    db 'Booting OS', 0
 
 ; times  repeat something
 
