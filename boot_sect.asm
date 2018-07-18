@@ -5,33 +5,22 @@
 ; boot sector is 512 bytes, last two bytes must be 0xaa55
 
 
-mov bx, 43
+    mov bx, HELLO_MSG
+    call print_string
 
-    cmp bx, 4
-    jg else1
-    mov al, 'A'
-    jmp end
-else1:
-    cmp bx, 40
-    jge else2
-    mov al, 'B'
-    jmp end
-else2:
-    mov al, 'C'
-end:
+    mov bx, GOODBYE_MSG
+    call print_string
 
-mov ah, 0x0e
-int 0x10
+    jmp $
 
+%include "print_string.asm"
 
-jmp $
+; DATA
+HELLO_MSG:
+    db 'Hello, World!', 0
+GOODBYE_MSG:
+    db 'Goodby!', 0
 
-
-
-
-; string , null terminating
-my_string:
-    db 'Booting OS', 0
 
 ; times  repeat something
 
