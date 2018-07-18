@@ -1,6 +1,13 @@
 
+
+
 ; load DH sectors to ES:BX from drive DL
-disk_load:
+; e.g.
+;     mov bx, 0x9000          ; load 2 sectors to 0x0000:0x90000
+;     mov dh, 2
+;     mov dl, [BOOT_DRIVE]
+;     call disk_load
+ disk_load:
     pusha
     push dx
 
