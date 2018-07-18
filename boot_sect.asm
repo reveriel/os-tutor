@@ -1,18 +1,42 @@
 
+[org 0x7c00]
 ; boot sector is 512 bytes, last two bytes must be 0xaa55
 
 mov ah, 0x0e; tty mode
-mov al, 'H'
+; mov al, 'H'
+; int 0x10
+; mov al, 'e'
+; int 0x10
+; mov al, 'l'
+; int 0x10
+; mov al, 'l'
+; int 0x10
+; mov al, 'o'
+; int 0x10
+; ; LF CR
+; mov al, 0x0d
+; int 0x10
+; mov al, 0x0a
+; int 0x10
+
+mov al, the_secret
 int 0x10
-mov al, 'e'
+
+mov al, [the_secret]
 int 0x10
-mov al, 'l'
+
+mov bx, the_secret
+add bx, 0x7c00
+mov al, [bx]
 int 0x10
-int 0x10
-mov al, 'o'
+
+mov al, [0x7c1d]
 int 0x10
 
 jmp $;
+
+the_secret:
+    db "X"
 
 ; times  repeat something
 
