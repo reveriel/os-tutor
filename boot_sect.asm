@@ -5,18 +5,30 @@
 ; boot sector is 512 bytes, last two bytes must be 0xaa55
 
 
-    mov dx, 0x1fb6
+    mov [BOOT_DRIVE], dl    ; BISO stores our boot drive in DL, we save it
+
+    mov bp , 0x8000         ; set stack away from here
+    mov sp, bp
+
+    mov bx, 0x9000          ; load 5 sectors to 0x0000:0x90000
+    mov dh, 2
+    mov dl, [BOOT_DRIVE]
+    call disk_load
+
+    mov dx, [0x9000]
+    call print_hex
+
+    mov dx, [0x9000 + 512]
     call print_hex
 
     jmp $
 
+%include "print_string.asm"
 %include "print_hex.asm"
+%include "disk_load.asm"
 
 ; DATA
-HELLO_MSG:
-    db 'Hello, World!', 0
-GOODBYE_MSG:
-    db 'Goodby!', 0
+BOOT_DRIVE: db  0
 
 
 ; times  repeat something
@@ -33,3 +45,11 @@ times 510-($-$$) db 0
 
 ; magic
 dw 0xaa55
+
+
+; disk_load test data
+; a sector is 512 bytes
+times 256 dw 0xdada
+times 256 dw 0xface
+
+

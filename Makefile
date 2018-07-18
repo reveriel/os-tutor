@@ -1,5 +1,5 @@
 
-boot_sect.bin : boot_sect.asm print_string.asm print_hex.asm
+boot_sect.bin : boot_sect.asm print_string.asm print_hex.asm disk_load.asm
 	asm -f bin $< -o $@
 
 run: boot_sect.bin
