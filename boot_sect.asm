@@ -10,7 +10,7 @@
     mov bp , 0x8000         ; set stack away from here
     mov sp, bp
 
-    mov bx, 0x9000          ; load 5 sectors to 0x0000:0x90000
+    mov bx, 0x9000          ; load 2 sectors to 0x0000:0x90000
     mov dh, 2
     mov dl, [BOOT_DRIVE]
     call disk_load
