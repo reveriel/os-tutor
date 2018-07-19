@@ -6,14 +6,27 @@ OS from scratch, see [os-tutorial](https://github.com/cfenollosa/os-tutorial)
 * [nasm language](https://www.nasm.us/xdoc/2.13.03/html/nasmdoc0.html)
     * see appendix b, instructions
 * [BIOS interrupt call](https://en.wikipedia.org/wiki/BIOS_interrupt_call)
-
-
+* [OS dev wiki](https://wiki.osdev.org/GCC_Cross-Compiler)
 
 ## compile
 
 ```
 nasm -f bin a.asm -o a.bin
 ```
+
+### cross compile
+
+need binutils and gcc
+
+```
+export PREFIX="/usr/local/i386elfgcc"
+export TARGET=i386-elf
+```
+
+see [kernel-crosscompiler](https://github.com/cfenollosa/os-tutorial/tree/master/11-kernel-crosscompiler)
+
+and [osdev - gcc cross compiler](https://wiki.osdev.org/GCC_Cross-Compiler)
+
 
 ## run
 
