@@ -16,7 +16,7 @@ nasm -f bin a.asm -o a.bin
 
 ### cross compile
 
-need binutils and gcc
+need binutils and gcc, and gdb
 
 ```
 export PREFIX="/usr/local/i386elfgcc"

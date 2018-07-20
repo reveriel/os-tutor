@@ -21,11 +21,11 @@ KERNEL_OFFSET equ 0x1000    ; load our kernel here
 
     jmp $
 
-%include "print_string.asm"
-%include "disk_load.asm"
-%include "gdt.asm"
-%include "print_string_pm.asm"
-%include "switch_to_pm.asm"
+%include "boot/print_string.asm"
+%include "boot/disk_load.asm"
+%include "boot/gdt.asm"
+%include "boot/print_string_pm.asm"
+%include "boot/switch_to_pm.asm"
 ; %include "print_hex.asm"
 
 [bits 16]
@@ -35,8 +35,8 @@ load_kernel:
     call print_string
     call print_ln
 
-    mov bx, KERNEL_OFFSET       ; read  15 sectors from boot disk to
-    mov dh, 15                  ; KERNEL_OFFSET
+    mov bx, KERNEL_OFFSET       ; read  sectors from boot disk to
+    mov dh, 16                  ; KERNEL_OFFSET
     mov dl, [BOOT_DRIVER]
     call disk_load
 
