@@ -1,6 +1,11 @@
-void memory_copy(char *src, char *dst, int nbytes) {
-    while (nbytes--)
-        *dst++ = *src++;
+#include "util.h"
+
+void memory_copy(u8 *src, u8 *dst, u32 nbytes) {
+    while (nbytes--) *dst++ = *src++;
+}
+
+void memory_set(u8 *dst, u8 val, u32 len) {
+    while (len--) *dst++ = val;
 }
 
 void int_to_ascii(int n, char str[]) {
@@ -13,11 +18,26 @@ void int_to_ascii(int n, char str[]) {
     if (sign < 0) str[i++] = '-';
     str[i--] = '\0';
     // reverse
-    int j = 0;
-    while (j < i) {
-        int tmp = str[i];
-        str[i] = str[j];
-        str[j] = tmp;
-        i--; j++;
+    revsere_n((u8*)str, i);
+}
+
+void reverse(u8 *s) {
+    revsere_n(s, strlen(s));
+}
+
+// reverse the array s of length len
+void revsere_n(u8 *s, u32 len) {
+    u8 *e = s + len;
+    while (s < e) {
+        SWAP(*s, *e);
+        ++s, --e;
     }
+}
+
+
+// don't count the '/0'
+int strlen(u8 *s) {
+    int i = 0;
+    while (s[i] != '\0') ++i;
+    return i;
 }
