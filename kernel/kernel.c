@@ -3,6 +3,7 @@
 #include "../cpu/isr.h"
 #include "../cpu/idt.h"
 #include "../cpu/timer.h"
+#include "../drivers/keyboard.h"
 
 
 void main() {
@@ -11,6 +12,8 @@ void main() {
     isr_install();
 
     asm volatile("sti");
-    init_timer(4);
+    // init_timer(4);
+
+    init_keyboard();
 
 }
