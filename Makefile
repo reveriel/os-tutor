@@ -1,8 +1,8 @@
 
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
+HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
 
-OBJ = $(C_SOURCES:.c=.o)
+OBJ = $(C_SOURCES:.c=.o cpu/interrupt.o)
 
 CC = /usr/local/i386elfgcc/bin/i386-elf-gcc
 LD = /usr/local/i386elfgcc/bin/i386-elf-ld
@@ -37,7 +37,7 @@ run: os-image.bin
 
 # Open the connection to qemu and load the kernel-object with symbols
 debug:	os-image.bin kernel.elf
-	qemu-symbols-i386 -s -fda os-image.bin &
+	qemu-system-i386 -s -fda os-image.bin  -d guest_errors,int &
 	$(GDB) -ex "target remote localhost:1234" \
 	    -ex "symbol-file kernel.elf"
 
@@ -48,3 +48,4 @@ clean:
 	rm -rf  kernel/*.o
 	rm -rf boot/*.bin boot/*.o
 	rm -rf drivers/*.o
+	rm -rf cpu/*.o
