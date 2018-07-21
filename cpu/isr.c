@@ -6,6 +6,9 @@
 
 isr_t interrupt_handlers[256];
 
+// init cpu isr
+// remap pci
+// init irq
 void isr_install() {
     set_idt_gate(0, (u32)isr0);
     set_idt_gate(1, (u32)isr1);
