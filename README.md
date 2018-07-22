@@ -8,6 +8,9 @@ OS from scratch, see [os-tutorial](https://github.com/cfenollosa/os-tutorial)
 * [BIOS interrupt call](https://en.wikipedia.org/wiki/BIOS_interrupt_call)
 * [OS dev wiki](https://wiki.osdev.org/GCC_Cross-Compiler)
 
+* [James Molloy's tutorial](http://www.jamesmolloy.co.uk/tutorial_html)
+* [James molloy's tutorial knwon bugs](https://wiki.osdev.org/James_Molloy%27s_Tutorial_Known_Bugs)
+
 ## compile
 
 ```
