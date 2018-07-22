@@ -1,6 +1,6 @@
 
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c libc/*.c)
+HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h libc/*h)
 
 OBJ = $(C_SOURCES:.c=.o cpu/interrupt.o)
 
@@ -49,3 +49,4 @@ clean:
 	rm -rf boot/*.bin boot/*.o
 	rm -rf drivers/*.o
 	rm -rf cpu/*.o
+	rm -rf libc/*.o
