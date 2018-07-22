@@ -74,8 +74,8 @@ int print_char(char c, int col, int row, char attr) {
 
     if (offset >= MAX_ROWS * MAX_COLS * 2) {
         for (int i = 1; i < MAX_ROWS; i++)
-            memory_copy((u8*)(get_offset(0, i) + VIDEO_ADDRESS),
-                        (u8*)(get_offset(0, i-1) + VIDEO_ADDRESS),
+            memory_copy((uint8_t*)(get_offset(0, i) + VIDEO_ADDRESS),
+                        (uint8_t*)(get_offset(0, i-1) + VIDEO_ADDRESS),
                         MAX_COLS * 2);
         // blank last line
         char *last_line = get_offset(0, MAX_ROWS-1) + VIDEO_ADDRESS;

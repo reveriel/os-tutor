@@ -1,11 +1,9 @@
 #include "mem.h"
-#include "../cpu/types.h"
 
-
-void memory_copy(u8 *src, u8 *dst, u32 nbytes) {
+void memory_copy(uint8_t *src, uint8_t *dst, uint32_t nbytes) {
     while (nbytes--) *dst++ = *src++;
 }
 
-void memory_set(u8 *dst, u8 val, u32 len) {
+void memory_set(uint8_t *dst, uint8_t val, uint32_t len) {
     while (len--) *dst++ = val;
 }

@@ -1,5 +1,4 @@
 #include "string.h"
-#include "../cpu/types.h"
 
 void int_to_ascii(int n, char str[]) {
     int i, sign;
@@ -19,10 +18,10 @@ void reverse(char *s) {
 }
 
 // reverse the array s of length len
-void revsere_n(char *s, u32 len) {
+void revsere_n(char *s, unsigned int len) {
     char *e = s + len -1;
     while (s < e) {
-        u8 tmp = *s; *s = *e; *e = tmp;
+        char tmp = *s; *s = *e; *e = tmp;
         ++s, --e;
     }
 }

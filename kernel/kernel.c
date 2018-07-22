@@ -6,7 +6,7 @@
 #include "../libc/string.h"
 #include "kernel.h"
 
-void main() {
+void kernel_main() {
     isr_install();
     irq_install();
 
